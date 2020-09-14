@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	_ "slack-bot/plugins"
 
+	"github.com/go-chat-bot/bot/slack"
 	_ "github.com/go-chat-bot/plugins/catfacts"
 	_ "github.com/go-chat-bot/plugins/catgif"
 	_ "github.com/go-chat-bot/plugins/chucknorris"
 )
 
 func main() {
-	fmt.Println("Slack token is", os.Getenv("SLACK_TOKEN"))
+	slack.Run(os.Getenv("SLACK_TOKEN"))
 }
