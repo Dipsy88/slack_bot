@@ -8,14 +8,16 @@ import (
 )
 
 var (
-	filePath string = "/Users/Dipesh/Documents/pass/configuration.json"
+	//filePath string = "/Users/Dipesh/Documents/pass/configuration.json"
+	filePath string = "resources/configuration.json"
 )
 
 // Configuration stores the config
 type Configuration struct {
-	GitUser  string
-	GitEmail string
-	GitPass  string
+	SlackToken string
+	GitUser    string
+	GitEmail   string
+	GitPass    string
 }
 
 // GetConfig exports the configuration
