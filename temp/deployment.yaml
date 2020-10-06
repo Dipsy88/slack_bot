@@ -15,9 +15,9 @@ spec:
         app: {{ template "fullname" . }}
     spec:
       volumes:
-      - name: application-secret
-        secret:
-          secretName: config-secret
+      - name: application-config
+        configMap:
+          name: slack-bot
           items:
             - key: configuration.json
               path: configuration.json
@@ -28,9 +28,17 @@ spec:
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         volumeMounts:
-        - name: application-secret
+        - name: application-config
           mountPath: "/app/resources"
           readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort }}
         resources:
       
 {{ toYaml .Values.resources | indent 12 }}
